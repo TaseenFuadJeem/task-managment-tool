@@ -25,12 +25,27 @@ const Todo = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const [date, setDate] = useState(new Date())
 
     const onSubmit = (data) => {
-        console.log(data)
+
+        const url = "http://localhost:5000/add-a-new-task";
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                reset();
+            });
+
     };
 
     return (
@@ -54,7 +69,7 @@ const Todo = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box className='lg:w-2/5 w-11/12 lg:max-h-[96%]' sx={style}>
+                <Box className='lg:w-2/5 w-11/12' sx={style}>
                     <div className='flex justify-between    '>
                         <h1 className='text-xl font-bold underline underline-offset-2 mb-4'>Add a new task</h1>
                         <label onClick={handleClose} class="btn btn-primary btn-sm btn-circle">✕</label>
@@ -93,7 +108,7 @@ const Todo = () => {
                                 </label>
                             </div>
 
-                            <div className='flex justify-center items-center'>
+                            <div className='lg:flex justify-center items-center'>
                                 <DayPicker
                                     mode="single"
                                     selected={date}
