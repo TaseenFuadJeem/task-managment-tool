@@ -1,6 +1,11 @@
 import React from 'react';
+import TableRaw from './TableRaw';
+import { useQuery } from 'react-query';
 
 const Home = () => {
+
+    const { data: tasks } = useQuery("tasksForHomePage", () => fetch("http://localhost:5000/all-tasks").then(res => res.json()));
+
     return (
         <section className='mt-20 lg:mt-28 lg:px-32 px-3'>
             <h1 className='lg:text-5xl text-4xl ' style={{ fontFamily: 'Russo One' }}> Your Daily Tasks</h1>
@@ -20,16 +25,11 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>
-                                <label>
-                                    <input type="checkbox" class="checkbox" />
-                                </label>
-                            </th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
+
+                        {
+                            tasks?.map(task => <TableRaw key={task._id} task={task} />)
+                        }
+
                     </tbody>
                 </table>
             </div>
