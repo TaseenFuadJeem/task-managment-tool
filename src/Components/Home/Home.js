@@ -1,10 +1,15 @@
 import React from 'react';
 import TableRaw from './TableRaw';
 import { useQuery } from 'react-query';
+import Loading from '../Loading/Loading';
 
 const Home = () => {
 
-    const { data: tasks } = useQuery("tasksForHomePage", () => fetch("http://localhost:5000/all-tasks").then(res => res.json()));
+    const { data: tasks, isLoading } = useQuery("tasksForHomePage", () => fetch("http://localhost:5000/all-tasks").then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <section className='mt-20 lg:mt-28 lg:px-32 px-3'>
