@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdPostAdd } from 'react-icons/md';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useForm } from "react-hook-form";
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+import { format } from 'date-fns';
 
 const style = {
     position: 'absolute',
@@ -12,7 +15,7 @@ const style = {
     bgcolor: 'background.paper',
     border: '4px solid #BA881C',
     boxShadow: 24,
-    p: 4,
+    p: 3,
     borderRadius: "10px"
 };
 
@@ -23,6 +26,8 @@ const Todo = () => {
     const handleClose = () => setOpen(false);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const [date, setDate] = useState(new Date())
 
     const onSubmit = (data) => {
         console.log(data)
@@ -49,44 +54,64 @@ const Todo = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box className='lg:w-2/5 w-11/12' sx={style}>
-                    <label onClick={handleClose} class="btn btn-primary btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <Box className='lg:w-2/5 w-11/12 lg:max-h-[96%]' sx={style}>
+                    <div className='flex justify-between    '>
+                        <h1 className='text-xl font-bold underline underline-offset-2 mb-4'>Add a new task</h1>
+                        <label onClick={handleClose} class="btn btn-primary btn-sm btn-circle">✕</label>
+                    </div>
 
-                    <h1 className='text-xl font-bold underline underline-offset-2 mb-4'>Add a new task</h1>
+                    <div>
 
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Title</span>
-                            </label>
-                            <input type="text" placeholder="Task Title" className="input input-bordered" {...register("title", {
-                                required: {
-                                    value: true,
-                                    message: "Title is required"
-                                }
-                            })} />
-                            <label className="label">
-                                {errors.title?.type === 'required' && <span className="label-text-alt text-red-500">{errors.title.message}</span>}
-                            </label>
-                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Title</span>
+                                </label>
+                                <input type="text" placeholder="Task Title" className="input input-bordered" {...register("title", {
+                                    required: {
+                                        value: true,
+                                        message: "Title is required"
+                                    }
+                                })} />
+                                <label className="label">
+                                    {errors.title?.type === 'required' && <span className="label-text-alt text-red-500">{errors.title.message}</span>}
+                                </label>
+                            </div>
 
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Task Details</span>
-                            </label>
-                            <textarea type="text" placeholder="Write about your task" className="textarea textarea-bordered" {...register("details", {
-                                required: {
-                                    value: true,
-                                    message: "Task details is required"
-                                }
-                            })} />
-                            <label className="label">
-                                {errors.details?.type === 'required' && <span className="label-text-alt text-red-500">{errors.details.message}</span>}
-                            </label>
-                        </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Task Details</span>
+                                </label>
+                                <textarea type="text" placeholder="Write about your task" className="textarea textarea-bordered" {...register("details", {
+                                    required: {
+                                        value: true,
+                                        message: "Task details is required"
+                                    }
+                                })} />
+                                <label className="label">
+                                    {errors.details?.type === 'required' && <span className="label-text-alt text-red-500">{errors.details.message}</span>}
+                                </label>
+                            </div>
 
-                        <input className='btn btn-primary mt-4' type="submit" />
-                    </form>
+                            <div className='flex justify-center items-center'>
+                                <DayPicker
+                                    mode="single"
+                                    selected={date}
+                                    onSelect={setDate}
+                                />
+
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Date</span>
+                                    </label>
+                                    <input type="text" value={format(date, 'PP')} className="input input-bordered" {...register("date")} />
+                                </div>
+
+                            </div>
+
+                            <input className='btn btn-primary w-full mt-4' type="submit" />
+                        </form>
+                    </div>
 
                 </Box>
             </Modal>
