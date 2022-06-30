@@ -8,7 +8,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
     border: '4px solid #BA881C',
     boxShadow: 24,
@@ -43,7 +42,7 @@ const Todo = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box className='lg:w-2/5 w-11/12' sx={style}>
                     <label onClick={handleClose} class="btn btn-primary btn-sm btn-circle absolute right-2 top-2">✕</label>
                 </Box>
             </Modal>
