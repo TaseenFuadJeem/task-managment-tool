@@ -9,6 +9,7 @@ import Calender from './Components/Calender/Calender';
 import InvalidPage from './Components/InvalidPage/InvalidPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path='/calender' element={<Calender />} />
         <Route path='*' element={<InvalidPage />} />
       </Routes>
+
+      <Footer />
 
       <ToastContainer />
     </section>
