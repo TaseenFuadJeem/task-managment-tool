@@ -7,6 +7,8 @@ import Todo from './Components/To-do/Todo';
 import CompletedTasks from './Components/CompletedTask/CompletedTasks';
 import Calender from './Components/Calender/Calender';
 import InvalidPage from './Components/InvalidPage/InvalidPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
         <Route path='*' element={<InvalidPage />} />
       </Routes>
 
+      <ToastContainer />
     </section>
   );
 }

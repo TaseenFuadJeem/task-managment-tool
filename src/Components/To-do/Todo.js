@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 
 const style = {
     position: 'absolute',
@@ -44,6 +45,8 @@ const Todo = () => {
             .then(result => {
                 console.log(result);
                 reset();
+                handleClose();
+                toast.success("Task added successfully");
             });
 
     };
