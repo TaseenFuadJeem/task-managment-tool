@@ -7,6 +7,9 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
+import { useQuery } from 'react-query';
+import Loading from '../Loading/Loading';
+import TodoTableRow from './TodoTableRow';
 
 const style = {
     position: 'absolute',
@@ -30,6 +33,12 @@ const Todo = () => {
 
     const [date, setDate] = useState(new Date())
 
+    const { data: tasks, isLoading, refetch } = useQuery("tasksForTodoPage", () => fetch("http://localhost:5000/all-tasks").then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading />
+    }
+
     const onSubmit = (data) => {
 
         const url = "http://localhost:5000/add-a-new-task";
@@ -46,6 +55,7 @@ const Todo = () => {
                 console.log(result);
                 reset();
                 handleClose();
+                refetch();
                 toast.success("Task added successfully");
             });
 
@@ -64,6 +74,27 @@ const Todo = () => {
                 <div className='flex justify-center mt-7 lg:mt-0'>
                     <button onClick={handleOpen} className='btn btn-primary'>Add a task <MdPostAdd className='ml-2 text-2xl' /></button>
                 </div>
+            </div>
+
+            <div class="overflow-x-auto mt-10">
+                <table class="table w-full">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Task Name</th>
+                            <th>Task Details</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {
+                            tasks?.map((task, index) => <TodoTableRow key={task._id} task={task} index={index} />)
+                        }
+
+                    </tbody>
+                </table>
             </div>
 
             <Modal
