@@ -2,6 +2,7 @@ import React from 'react';
 import { MdPostAdd } from 'react-icons/md';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { useForm } from "react-hook-form";
 
 const style = {
     position: 'absolute',
@@ -20,6 +21,12 @@ const Todo = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data)
+    };
 
     return (
         <section className='mt-20 lg:mt-28 lg:px-32 px-3'>
@@ -44,6 +51,43 @@ const Todo = () => {
             >
                 <Box className='lg:w-2/5 w-11/12' sx={style}>
                     <label onClick={handleClose} class="btn btn-primary btn-sm btn-circle absolute right-2 top-2">✕</label>
+
+                    <h1 className='text-xl font-bold underline underline-offset-2 mb-4'>Add a new task</h1>
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Title</span>
+                            </label>
+                            <input type="text" placeholder="Task Title" className="input input-bordered" {...register("title", {
+                                required: {
+                                    value: true,
+                                    message: "Title is required"
+                                }
+                            })} />
+                            <label className="label">
+                                {errors.title?.type === 'required' && <span className="label-text-alt text-red-500">{errors.title.message}</span>}
+                            </label>
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Task Details</span>
+                            </label>
+                            <textarea type="text" placeholder="Write about your task" className="textarea textarea-bordered" {...register("details", {
+                                required: {
+                                    value: true,
+                                    message: "Task details is required"
+                                }
+                            })} />
+                            <label className="label">
+                                {errors.details?.type === 'required' && <span className="label-text-alt text-red-500">{errors.details.message}</span>}
+                            </label>
+                        </div>
+
+                        <input className='btn btn-primary mt-4' type="submit" />
+                    </form>
+
                 </Box>
             </Modal>
 
