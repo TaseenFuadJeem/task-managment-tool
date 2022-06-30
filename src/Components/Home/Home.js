@@ -1,7 +1,7 @@
 import React from 'react';
-import TableRaw from './TableRaw';
 import { useQuery } from 'react-query';
 import Loading from '../Loading/Loading';
+import EachTask from './EachTask';
 
 const Home = () => {
 
@@ -19,24 +19,10 @@ const Home = () => {
                 <div className='lg:w-96 w-64 mt-1 border-t-2 border-gray-700'></div>
             </span>
 
-            <div class="overflow-x-auto mt-10">
-                <table class="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Task Name</th>
-                            <th>Task Details</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {
-                            tasks?.map(task => <TableRaw key={task._id} task={task} />)
-                        }
-
-                    </tbody>
-                </table>
+            <div class="grid lg:grid-cols-3 gap-9 mt-10">
+                {
+                    tasks?.map((task, index) => <EachTask key={task._id} task={task} index={index} />)
+                }
             </div>
 
         </section >

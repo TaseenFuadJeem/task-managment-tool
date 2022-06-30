@@ -77,25 +77,10 @@ const Todo = () => {
                 </div>
             </div>
 
-            <div class="overflow-x-auto mt-10">
-                <table class="table w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Task Name</th>
-                            <th>Task Details</th>
-                            <th>Date</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {
-                            tasks?.map((task, index) => <TodoTableRow key={task._id} task={task} index={index} refetch={refetch} />)
-                        }
-
-                    </tbody>
-                </table>
+            <div class="grid lg:grid-cols-3 gap-9 mt-10">
+                {
+                    tasks?.map((task, index) => <TodoTableRow key={task._id} task={task} index={index} refetch={refetch} />)
+                }
             </div>
 
             <Modal

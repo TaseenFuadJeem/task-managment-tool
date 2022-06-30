@@ -54,15 +54,15 @@ const TodoTableRow = ({ task, index, refetch }) => {
 
     return (
         <>
-            <tr>
-                <th>{index + 1}</th>
-                <td>{task?.title}</td>
-                <td>{task?.details}</td>
-                <td>{task?.date}</td>
-                <th>
-                    <button onClick={handleOpen} class="btn btn-ghost btn-xs">Update</button>
-                </th>
-            </tr>
+            <div className='min-h-[400px] p-4 rounded-lg shadow-2xl bg-white'>
+                <div className='flex justify-between mb-4'>
+                    <button onClick={handleOpen} className='btn btn-outline btn-sm'>Update</button>
+                    <p className='text-lg font-semibold'>Note: {index + 1}</p>
+                </div>
+                <h1>Title: <span className='text-2xl font-bold'>{task.title}</span></h1>
+                <h2 className='my-2'>Date: {task.date}</h2>
+                <p>{task.details}</p>
+            </div>
 
             <Modal
                 open={open}
