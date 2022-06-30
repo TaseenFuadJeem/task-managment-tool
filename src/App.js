@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <section className='overflow-hidden bg-no-repeat bg-cover bg-fixed h-screen' style={{ backgroundImage: `url(${bg})` }}>
+    <section className='overflow-hidden bg-no-repeat bg-cover bg-fixed' style={{ backgroundImage: `url(${bg})` }}>
 
       <Navbar />
 

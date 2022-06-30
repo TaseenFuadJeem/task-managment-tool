@@ -42,6 +42,7 @@ const Todo = () => {
     const onSubmit = (data) => {
 
         const url = "http://localhost:5000/add-a-new-task";
+        console.log(data);
 
         fetch(url, {
             method: 'POST',
@@ -90,7 +91,7 @@ const Todo = () => {
                     <tbody>
 
                         {
-                            tasks?.map((task, index) => <TodoTableRow key={task._id} task={task} index={index} />)
+                            tasks?.map((task, index) => <TodoTableRow key={task._id} task={task} index={index} refetch={refetch} />)
                         }
 
                     </tbody>
