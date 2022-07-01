@@ -77,7 +77,7 @@ const Todo = () => {
                 </div>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-9 mt-10">
+            <div className="grid lg:grid-cols-3 gap-9 mt-10">
                 {
                     tasks?.map((task, index) => <TodoTableRow key={task._id} task={task} index={index} refetch={refetch} />)
                 }
@@ -92,7 +92,7 @@ const Todo = () => {
                 <Box className='lg:w-2/5 w-11/12' sx={style}>
                     <div className='flex justify-between    '>
                         <h1 className='text-xl font-bold underline underline-offset-2 mb-4'>Add a new task</h1>
-                        <label onClick={handleClose} class="btn btn-primary btn-sm btn-circle">✕</label>
+                        <label onClick={handleClose} className="btn btn-primary btn-sm btn-circle">✕</label>
                     </div>
 
                     <div>

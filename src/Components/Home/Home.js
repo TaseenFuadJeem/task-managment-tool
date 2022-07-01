@@ -19,7 +19,7 @@ const Home = () => {
                 <div className='lg:w-96 w-64 mt-1 border-t-2 border-gray-700'></div>
             </span>
 
-            <div class="grid lg:grid-cols-3 gap-9 mt-10">
+            <div className="grid lg:grid-cols-3 gap-9 mt-10">
                 {
                     tasks?.map((task, index) => <EachTask key={task._id} task={task} index={index} />)
                 }

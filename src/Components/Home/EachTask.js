@@ -25,7 +25,7 @@ const EachTask = ({ task, index }) => {
     return (
         <div className='min-h-[400px] p-4 rounded-lg shadow-2xl bg-white'>
             <div className='flex justify-between mb-4'>
-                <input onClick={() => completeTask()} type="checkbox" class="checkbox checkbox-lg" />
+                <input onClick={() => completeTask()} type="checkbox" className="checkbox checkbox-lg" />
                 <p className='text-lg font-semibold'>Note: {index + 1}</p>
             </div>
             <h1>Title: <span className='text-2xl font-bold'>{task.title}</span></h1>

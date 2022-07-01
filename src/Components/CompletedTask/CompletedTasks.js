@@ -20,7 +20,7 @@ const CompletedTasks = () => {
                 </span>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-9 mt-10">
+            <div className="grid lg:grid-cols-3 gap-9 mt-10">
                 {
                     tasks?.map(task =>
                         <div className='min-h-[400px] p-4 rounded-lg shadow-2xl bg-white' key={task._id}>

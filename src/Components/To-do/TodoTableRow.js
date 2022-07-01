@@ -73,7 +73,7 @@ const TodoTableRow = ({ task, index, refetch }) => {
                 <Box className='lg:w-2/5 w-11/12' sx={style}>
                     <div className='flex justify-between    '>
                         <h1 className='text-xl font-bold underline underline-offset-2 mb-4'>Update the task</h1>
-                        <label onClick={handleClose} class="btn btn-primary btn-sm btn-circle">✕</label>
+                        <label onClick={handleClose} className="btn btn-primary btn-sm btn-circle">✕</label>
                     </div>
 
                     <div>
