@@ -5,7 +5,7 @@ import EachTask from './EachTask';
 
 const Home = () => {
 
-    const { data: tasks, isLoading } = useQuery("tasksForHomePage", () => fetch("http://localhost:5000/all-tasks").then(res => res.json()));
+    const { data: tasks, isLoading } = useQuery("tasksForHomePage", () => fetch("https://task-management-tool-op.herokuapp.com/all-tasks").then(res => res.json()));
 
     if (isLoading) {
         return <Loading />

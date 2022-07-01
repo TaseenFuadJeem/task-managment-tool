@@ -5,7 +5,7 @@ const EachTask = ({ task, index }) => {
 
     const completeTask = () => {
 
-        const url = `http://localhost:5000/task-complete/${task._id}`
+        const url = `https://task-management-tool-op.herokuapp.com/task-complete/${task._id}`
 
         fetch(url, {
             method: 'PUT',

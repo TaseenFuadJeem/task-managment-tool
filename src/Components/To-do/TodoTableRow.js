@@ -31,7 +31,7 @@ const TodoTableRow = ({ task, index, refetch }) => {
 
     const onSubmit = (data) => {
 
-        const url = `http://localhost:5000/update-a-task/${task._id}`;
+        const url = `https://task-management-tool-op.herokuapp.com/update-a-task/${task._id}`;
         console.log(data)
 
         fetch(url, {

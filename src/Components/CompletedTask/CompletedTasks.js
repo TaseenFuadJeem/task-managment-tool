@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading';
 
 const CompletedTasks = () => {
 
-    const { data: tasks, isLoading } = useQuery("CompletedTasks", () => fetch("http://localhost:5000/completed-tasks?task=completed").then(res => res.json()));
+    const { data: tasks, isLoading } = useQuery("CompletedTasks", () => fetch("https://task-management-tool-op.herokuapp.com/completed-tasks?task=completed").then(res => res.json()));
 
     if (isLoading) {
         return <Loading />

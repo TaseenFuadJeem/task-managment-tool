@@ -33,7 +33,7 @@ const Todo = () => {
 
     const [date, setDate] = useState(new Date())
 
-    const { data: tasks, isLoading, refetch } = useQuery("tasksForTodoPage", () => fetch("http://localhost:5000/all-tasks").then(res => res.json()));
+    const { data: tasks, isLoading, refetch } = useQuery("tasksForTodoPage", () => fetch("https://task-management-tool-op.herokuapp.com/all-tasks").then(res => res.json()));
 
     if (isLoading) {
         return <Loading />
@@ -41,7 +41,7 @@ const Todo = () => {
 
     const onSubmit = (data) => {
 
-        const url = "http://localhost:5000/add-a-new-task";
+        const url = "https://task-management-tool-op.herokuapp.com/add-a-new-task";
         console.log(data);
 
         fetch(url, {
